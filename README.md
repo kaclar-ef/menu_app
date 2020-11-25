@@ -1,24 +1,58 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# DB設計
 
-Things you may want to cover:
+## menusテーブル
+|column      |type   |options                               |
+|name        |string |null: false, index: true, unique: true|
+|menu_type_id|integer|null: false, index: true              |
+|color_id    |integer|null: false                           |
+|date        |date   |                                      |
 
-* Ruby version
+### アソシエーション
+belogns_to :menu_type
+belongs_to :color
+has_many :cookings
+has_many :ingredient_amounts, through: :cookings
 
-* System dependencies
 
-* Configuration
+## ingredientsテーブル
+|column|type   |options    |
+|name  |string |null: false|
+|cost  |integer|null: false|
+|weight|integer|null: false|
+|unit  |string |null: false|
 
-* Database creation
+### アソシエーション
+has_many: ingredient_amounts
+has_many: amounts, through: :ingredient_amounts
 
-* Database initialization
 
-* How to run the test suite
+## amountsテーブル
+|column        |type   |options    |
+|weight_per_ten|integer|null: false|
 
-* Services (job queues, cache servers, search engines, etc.)
+### アソシエーション
+has_many: ingredient_amounts
+has_many: ingredients, through: :ingredient_amounts
 
-* Deployment instructions
 
-* ...
+## ingredient_amountsテーブル
+|column       |type     |options                               |
+|name         |string   |null: false, index: true, unique: true|
+|ingredient_id|reference|foreign_key: true                     |
+|amount_id    |reference|foreign_key: true                     |
+
+### アソシエーション
+belongs_to :ingredient
+belongs_to :amount
+has_many :cookings
+
+## cookingsテーブル
+|column              |type     |options          |
+|menu_id             |reference|foreign_key: true|
+|ingredient_amount_id|reference|foreign_key: true|
+
+### アソシエーション
+belongs_to :menu
+belongs_to :ingredient_amount
