@@ -1,0 +1,20 @@
+<h1>食材登録画面</h1>
+
+<%= form_with model: @ingredient, local: true do |f| %>
+  <label>
+    食材名
+    <%= f.text_field :name %>
+  </label>
+  <br>
+  <label>
+    単価
+    <%= f.number_field :value %>円
+  </label>
+  <br>
+  <label>
+    重さ・個数など
+    <%= f.text_field :weight%>
+  </label>
+  <br>
+  <%= f.submit '登録' %>
+<% end %>
