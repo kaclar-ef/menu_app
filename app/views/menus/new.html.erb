@@ -1,0 +1,17 @@
+<h1>メニュー登録</h1>
+<%= form_with model: @menu, local: true do |f|%>
+  <label>
+    メニュー名
+    <%= f.text_field :name %>
+  </label>
+  <br>
+  <label>
+    <%= f.collection_select :menu_type_id, MenuType.all, :id, :type %>
+  </label>
+  <br>
+  <label>
+    <%= f.collection_select :color_id, Color.all, :id, :color %>
+  </label>
+  <br>
+  <%= f.submit "登録" %>
+<% end %>

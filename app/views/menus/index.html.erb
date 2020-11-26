@@ -1,0 +1,11 @@
+<h1>メニュー一覧</h1>
+<%= link_to "メニュー登録", new_menu_path %>
+<ul>
+  <% @menus.each do |menu| %>
+    <li>
+      <%= link_to edit_menu_path(menu.id) do %>
+        <%= menu.name %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

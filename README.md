@@ -10,7 +10,7 @@
 |date        |date   |                                      |
 
 ### アソシエーション
-belogns_to :menu_type
+belongs_to :menu_type
 belongs_to :color
 has_many :costs
 has_many :ingredients, through: :cookings
@@ -32,9 +32,9 @@ has_many: menus, through: :costs
 |weight_per_ten|string|null: false|
 
 ### アソシエーション
-has_many: costs
-has_many: ingredients, through: :costs
-has_many: menus, through: :costs
+has_many :costs
+has_many :ingredients, through: :costs
+has_many :menus, through: :costs
 
 ## costsテーブル
 |column       |type     |options          |

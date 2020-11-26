@@ -1,0 +1,27 @@
+<h1>メニュー編集</h1>
+<%= link_to  "食材との紐付け", new_menu_cost_path(@menu.id) %>
+<%= form_with model: @menu, local: true do |f|%>
+  <label>
+    メニュー名
+    <%= f.text_field :name %>
+  </label>
+  <br>
+  <label>
+    <%= f.collection_select :menu_type_id, MenuType.all, :id, :type %>
+  </label>
+  <br>
+  <label>
+    <%= f.collection_select :color_id, Color.all, :id, :color %>
+  </label>
+  <br>
+  <%= f.submit "登録" %>
+<% end %>
+
+<% @menu.ingredients.each do |ingredient| %>
+  <%= ingredient.name %>
+  <%= ingredient.weight %>
+<% end %>
+
+<% @menu.amounts.each do |amount| %>
+  <%= amount.weight_per_ten%>
+<% end %>

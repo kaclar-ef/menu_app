@@ -1,0 +1,14 @@
+<h1>食材との紐付け</h1>
+<%= form_with model: @menu, url: menu_costs_path(@menu.id), method: :post, local: true do |f|%>
+  <label>
+    必要な食材
+    <%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+  </label>
+  <br>
+  <label>
+    10人分の必要量
+    <%= f.text_field  :weight_per_ten %>
+  </label>
+  <br>
+  <%= f.submit "登録" %>
+<% end %>
